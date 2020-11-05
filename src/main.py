@@ -1,12 +1,23 @@
 from selenium import webdriver
 from datetime import datetime
+from selenium.webdriver.remote.command import Command
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import element_to_be_clickable
 from os import chmod
 
+
+def get_status(d):
+    try:
+        d.execute(Command.STATUS)
+        return "Alive"
+    except Exception:
+        return "Dead"
+
+
 # Instantiate driver
+print("Opening chrome ...")
 chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
@@ -20,6 +31,9 @@ profile = {"download.default_directory": download_default_directory,
 chrome_options.add_experimental_option("prefs", profile)
 chrome_options.add_argument("--disable-extensions")
 driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', options=chrome_options)
+print("Chrome status : "+get_status(driver))
+
+# The url
 url = 'https://media.interieur.gouv.fr/deplacement-covid-19/'
 
 # Get current time
@@ -28,8 +42,10 @@ date = now.strftime('%d/%m/%y')
 time = now.strftime('%H:%M')
 
 # Go to url
+print("Going to url "+url+" ...")
 driver.get(url)
 
+print("Accessing the fields ...")
 # Get fields
 firstname = driver.find_element_by_id("field-firstname")
 lastname = driver.find_element_by_id("field-lastname")
@@ -42,6 +58,7 @@ date_sortie = driver.find_element_by_id("field-datesortie")
 heure_sortie = driver.find_element_by_id("field-heuresortie")
 sport_animaux = driver.find_element_by_id("checkbox-sport_animaux")
 
+print("Filling the fields ...")
 # Fill fields
 firstname.send_keys("Lucien")
 lastname.send_keys("David")
@@ -54,5 +71,7 @@ date_sortie.send_keys(date)
 heure_sortie.send_keys(time)
 sport_animaux.click()
 
+print("Submitting the form ...")
 # Submit
-WebDriverWait(driver, 20).until(element_to_be_clickable((By.ID, "generate-btn"))).click()
+response = WebDriverWait(driver, 20).until(element_to_be_clickable((By.ID, "generate-btn"))).click()
+print("The output file should be accessible in ~/Downloads now !")
