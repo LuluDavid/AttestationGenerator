@@ -1,6 +1,9 @@
 from selenium import webdriver
 from datetime import datetime
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support.expected_conditions import element_to_be_clickable
 from os import chmod
 
 # Instantiate driver
@@ -52,4 +55,4 @@ heure_sortie.send_keys(time)
 sport_animaux.click()
 
 # Submit
-driver.find_element_by_id("generate-btn").click()
+WebDriverWait(driver, 20).until(element_to_be_clickable((By.ID, "generate-btn"))).click()
