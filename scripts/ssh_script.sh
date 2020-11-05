@@ -1,5 +1,5 @@
 #!/bin/sh
-python3 -u AttestationGenerator/src/main.py
-cd Downloads
-a=`ls ./Downloads | head -n 1`
-echo $a
+python3 AttestationGenerator/src/main.py
+cd Downloads || return
+a=$(ls | tail -n 1)
+echo "$a"

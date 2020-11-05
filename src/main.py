@@ -5,7 +5,12 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import element_to_be_clickable
-from os import chmod
+from os import chmod, devnull
+import sys
+
+
+# Disable printing
+sys.stdout = open(devnull, 'w')
 
 
 def get_status(d):

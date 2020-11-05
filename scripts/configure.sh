@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # To run for new vms
 
@@ -28,7 +28,7 @@ sudo mv /usr/bin/google-chrome-stable /usr/local/bin/google-chrome
 # Update .bashrc
 echo "export PATH=$PATH:/usr/local/bin" >> .bashrc
 echo "alias python=python3" >> .bashrc
-source ~/.bashrc
+source /home/.bashrc
 
 # Create Downloads directory
 sudo mkdir Downloads
