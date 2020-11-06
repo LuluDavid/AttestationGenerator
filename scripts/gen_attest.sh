@@ -8,5 +8,5 @@ then
 else
 	echo "Attestation $a generated"
 	scp ${SSH}:~/Downloads/"$a" /Users/luciendavid/Downloads/"$a"
-	ssh ${SSH} "rm ~/Downloads/\$a"
+	ssh ${SSH} "rm ~/Downloads/$a"
 fi
