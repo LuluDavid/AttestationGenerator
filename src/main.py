@@ -21,9 +21,9 @@ zip_code = argv[8]
 
 # Whether it is for groceries or for an outdoor break
 checkbox_id = None
-if reason == "groceries":
+if reason == 'groceries':
     checkbox_id = "checkbox-achats"
-elif reason == "walk":
+elif reason == 'walk':
     checkbox_id = "checkbox-sport_animaux"
 else:
     print("Unknown reason "+reason)
