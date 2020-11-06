@@ -10,7 +10,7 @@ from sys import argv
 
 
 # Whether it is for groceries or for an outdoor break
-for_groceries = argv[0]
+for_groceries = argv[0] == "True"
 checkbox_id = "checkbox-achats" if for_groceries else "checkbox-sport_animaux"
 
 
