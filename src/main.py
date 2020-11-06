@@ -8,15 +8,15 @@ from selenium.webdriver.support.expected_conditions import element_to_be_clickab
 from os import chmod
 from sys import argv, exit
 
-print("Generating the attestation with arguemnts :", argv[1:])
+print("Generating the attestation with arguments :", argv[1:])
 # Get the arguments
 reason = argv[1]
 first_name = argv[2]
 last_name = argv[3]
-birthday = argv[4]
+birthday_date = argv[4]
 place_of_birth = argv[5]
-address = argv[6]
-city = argv[7]
+address_ = argv[6]
+city_ = argv[7]
 zip_code = argv[8]
 
 # Whether it is for groceries or for an outdoor break
@@ -84,10 +84,10 @@ print("Filling the fields ...")
 # Fill fields
 firstname.send_keys(first_name)
 lastname.send_keys(last_name)
-birthday.send_keys(birthday)
+birthday.send_keys(birthday_date)
 place_of_birth.send_keys(place_of_birth)
-address.send_keys(address)
-city.send_keys(city)
+address.send_keys(address_)
+city.send_keys(city_)
 zipcode.send_keys(zip_code)
 date_sortie.send_keys(date)
 heure_sortie.send_keys(time)
