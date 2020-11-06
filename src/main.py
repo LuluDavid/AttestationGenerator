@@ -6,12 +6,19 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import element_to_be_clickable
 from os import chmod
-from sys import argv
+from sys import argv, exit
 
 
 # Whether it is for groceries or for an outdoor break
-for_groceries = argv[0] == "True"
-checkbox_id = "checkbox-achats" if for_groceries else "checkbox-sport_animaux"
+arg = argv[0]
+checkbox_id = None
+if arg == "True":
+    checkbox_id = "checkbox-achats"
+elif arg == "False":
+    checkbox_id = "checkbox-sport_animaux"
+else:
+    print("Illegal state")
+    exit()
 
 
 def get_status(d):

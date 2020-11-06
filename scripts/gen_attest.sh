@@ -13,7 +13,8 @@ if [ -z "$a" ]
 then
 	echo "Could not find the downloaded attestation"
 else
+  ssh ${SSH} "cat ~/logs.txt; rm ~/logs.txt"
 	scp ${SSH}:~/Downloads/"$a" /Users/luciendavid/Downloads/"$a"
-	ssh ${SSH} "cat ~/logs.txt; rm ~/logs.txt; rm ~/Downloads/$a"
+	ssh ${SSH} "rm ~/Downloads/$a"
 	echo "Attestation $a generated"
 fi
