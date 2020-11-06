@@ -11,6 +11,7 @@ from sys import argv, exit
 
 # Whether it is for groceries or for an outdoor break
 arg = argv[0]
+print("Is groceries :", arg)
 checkbox_id = None
 if arg == "True":
     checkbox_id = "checkbox-achats"
