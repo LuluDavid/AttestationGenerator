@@ -60,8 +60,8 @@ url = 'https://media.interieur.gouv.fr/deplacement-covid-19/'
 
 # Get current time
 now = datetime.now()
-date = now.strftime('%Y%m%d')
-time = now.strftime('%H%M')
+# date = now.strftime('%Y%m%d')
+time = now.strftime('%H:%M')
 
 # Go to url
 print("Going to url "+url+" ...")
@@ -97,7 +97,7 @@ print("city ->", city_)
 zipcode.send_keys(zip_code)
 print("zipcode ->", zip_code)
 # date_sortie.send_keys(date)
-print("date ->", date)
+# print("date ->", date)
 heure_sortie.send_keys(time)
 print("time ->", time)
 checkbox.click()
