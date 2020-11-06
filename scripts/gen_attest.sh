@@ -1,9 +1,9 @@
 #!/bin/sh
 # Set up ssh
-SSH=ec2-user@ec2-15-188-14-163.eu-west-3.compute.amazonaws.com
-eval "$(ssh-agent -s)"
+SSH=ec2-user@ec2-35-180-192-110.eu-west-3.compute.amazonaws.com
 if [ -f "Test.pem" ]
 then
+  eval "$(ssh-agent -s)"
   ssh-add "Test.pem"
 fi
 # Get logfile

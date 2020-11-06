@@ -10,14 +10,14 @@ from sys import argv, exit
 
 print("Generating the attestation with arguments :", argv[1:])
 # Get the arguments
-reason = argv[1]
-first_name = argv[2]
-last_name = argv[3]
-birthday_date = argv[4]
-place_of_birth = argv[5]
-address_ = argv[6]
-city_ = argv[7]
-zip_code = argv[8]
+reason = str(argv[1])
+first_name = str(argv[2])
+last_name = str(argv[3])
+birthday_date = str(argv[4])
+place_of_birth = str(argv[5])
+address_ = str(argv[6])
+city_ = str(argv[7])
+zip_code = str(argv[8])
 
 # Whether it is for groceries or for an outdoor break
 checkbox_id = None
