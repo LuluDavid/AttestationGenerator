@@ -60,7 +60,7 @@ url = 'https://media.interieur.gouv.fr/deplacement-covid-19/'
 
 # Get current time
 now = datetime.now()
-date = now.strftime('%y-%m-%d')
+date = now.strftime('%Y-%m-%d')
 time = now.strftime('%H:%M')
 
 # Go to url
