@@ -8,17 +8,25 @@ from selenium.webdriver.support.expected_conditions import element_to_be_clickab
 from os import chmod
 from sys import argv, exit
 
+print("Generating the attestation with arguemnts :", argv[1:])
+# Get the arguments
+reason = argv[1]
+first_name = argv[2]
+last_name = argv[3]
+birthday = argv[4]
+place_of_birth = argv[5]
+address = argv[6]
+city = argv[7]
+zip_code = argv[8]
 
 # Whether it is for groceries or for an outdoor break
-arg = argv[1]
-print("Is groceries :", arg)
 checkbox_id = None
-if arg == "True":
+if reason == "groceries":
     checkbox_id = "checkbox-achats"
-elif arg == "False":
+elif reason == "walk":
     checkbox_id = "checkbox-sport_animaux"
 else:
-    print("Illegal state")
+    print("Unknown reason "+reason)
     exit()
 
 
@@ -74,13 +82,13 @@ sport_animaux = driver.find_element_by_id(checkbox_id)
 
 print("Filling the fields ...")
 # Fill fields
-firstname.send_keys("Lucien")
-lastname.send_keys("David")
-birthday.send_keys("24/11/1998")
-place_of_birth.send_keys("Poitiers")
-address.send_keys("130 allée des Chenes")
-city.send_keys("Jard-sur-mer")
-zipcode.send_keys("85520")
+firstname.send_keys(first_name)
+lastname.send_keys(last_name)
+birthday.send_keys(birthday)
+place_of_birth.send_keys(place_of_birth)
+address.send_keys(address)
+city.send_keys(city)
+zipcode.send_keys(zip_code)
 date_sortie.send_keys(date)
 heure_sortie.send_keys(time)
 sport_animaux.click()
