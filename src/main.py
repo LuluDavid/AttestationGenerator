@@ -5,12 +5,21 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import element_to_be_clickable
-from os import chmod, devnull
-import sys
+from os import chmod
+from sys import argv, exit
 
 
-# Disable printing
-sys.stdout = open(devnull, 'w')
+# Whether it is for groceries or for an outdoor break
+arg = argv[1]
+print("Is groceries :", arg)
+checkbox_id = None
+if arg == "True":
+    checkbox_id = "checkbox-achats"
+elif arg == "False":
+    checkbox_id = "checkbox-sport_animaux"
+else:
+    print("Illegal state")
+    exit()
 
 
 def get_status(d):
@@ -61,7 +70,7 @@ city = driver.find_element_by_id("field-city")
 zipcode = driver.find_element_by_id("field-zipcode")
 date_sortie = driver.find_element_by_id("field-datesortie")
 heure_sortie = driver.find_element_by_id("field-heuresortie")
-sport_animaux = driver.find_element_by_id("checkbox-sport_animaux")
+sport_animaux = driver.find_element_by_id(checkbox_id)
 
 print("Filling the fields ...")
 # Fill fields
