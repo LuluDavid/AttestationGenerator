@@ -5,7 +5,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import element_to_be_clickable
-from os import chmod
 from sys import argv, exit
 
 print("Generating the attestation with arguments :", argv[1:])
@@ -44,8 +43,7 @@ chrome_options = Options()
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-dev-shm-usage')
-download_default_directory = "/home/ec2-user/Downloads"
-chmod(download_default_directory, 0o777)
+download_default_directory = "/Users/luciendavid/Downloads"
 profile = {"download.default_directory": download_default_directory,
            "download.prompt_for_download": False,
            "download.directory_upgrade": True,

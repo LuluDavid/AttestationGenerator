@@ -2,9 +2,9 @@
 
 # To run for new vms
 
-# Copy the files
-sudo yum install -y git
-git clone "https://github.com/LuluDavid/AttestationGenerator.git"
+# Copy the files - to be run manually
+# sudo yum install -y git
+# git clone "https://github.com/LuluDavid/AttestationGenerator.git"
 
 # Python
 sudo yum install -y python3
