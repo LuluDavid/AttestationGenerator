@@ -57,16 +57,21 @@ print("Chrome status : "+get_status(driver))
 
 # The url & timeout
 url = 'https://media.interieur.gouv.fr/deplacement-covid-19/'
-download_timeout = 10
+download_timeout = 5
 
 # Get current time
 now = datetime.now()
-# date = now.strftime('%Y%m%d')
+date = now.strftime('%d%m%Y')
 time = now.strftime('%H:%M')
 
 # Go to url
 print("Going to url "+url+" ...")
 driver.get(url)
+
+# Reload if necessary
+reload = driver.find_element_by_id("reload-btn")
+if reload.size != 0:
+    WebDriverWait(driver, 3).until(element_to_be_clickable((By.ID, "reload-btn"))).click()
 
 print("Accessing the fields ...")
 # Get fields
@@ -79,7 +84,6 @@ city = driver.find_element_by_id("field-city")
 zipcode = driver.find_element_by_id("field-zipcode")
 date_sortie = driver.find_element_by_id("field-datesortie")
 heure_sortie = driver.find_element_by_id("field-heuresortie")
-checkbox = driver.find_element_by_id(checkbox_id)
 
 print("Filling the fields ...")
 # Fill fields
@@ -97,15 +101,16 @@ city.send_keys(city_)
 print("city ->", city_)
 zipcode.send_keys(zip_code)
 print("zipcode ->", zip_code)
-# date_sortie.send_keys(date)
-# print("date ->", date)
+date_sortie.send_keys(date)
+print("date ->", date)
 heure_sortie.send_keys(time)
 print("time ->", time)
-checkbox.click()
+WebDriverWait(driver, 3).until(element_to_be_clickable((By.ID, checkbox_id))).click()
 print("reason ->", reason)
 
 print("Submitting the form ...")
 # Submit
-response = WebDriverWait(driver, 20).until(element_to_be_clickable((By.ID, "generate-btn"))).click()
+submit = driver.find_element_by_id("generate-btn")
+response = WebDriverWait(driver, 3).until(element_to_be_clickable((By.ID, "generate-btn"))).click()
 sleep(download_timeout)
 print("The output file should be accessible in ~/Downloads now !")
