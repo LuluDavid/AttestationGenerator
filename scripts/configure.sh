@@ -3,6 +3,7 @@
 # To run for new vms
 
 # Copy the files - to be run manually
+# sudo yum -y update
 # sudo yum install -y git
 # git clone "https://github.com/LuluDavid/AttestationGenerator.git"
 
@@ -16,7 +17,7 @@ rm get-pip.py
 pip3 install -r AttestationGenerator/requirements.txt
 
 # Chromedriver
-wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip
+sudo wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
 sudo mv chromedriver /usr/local/bin/chromedriver
 sudo rm chromedriver_linux64.zip

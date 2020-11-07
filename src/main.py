@@ -1,11 +1,12 @@
 from selenium import webdriver
 from datetime import datetime
 from selenium.webdriver.remote.command import Command
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import element_to_be_clickable
 from sys import argv, exit
+from time import sleep
 
 print("Generating the attestation with arguments :", argv[1:])
 # Get the arguments
@@ -39,11 +40,12 @@ def get_status(d):
 
 # Instantiate driver
 print("Opening chrome ...")
-chrome_options = Options()
+chrome_options = ChromeOptions()
+chrome_options.binary_location = '/usr/local/bin/google-chrome'
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-dev-shm-usage')
-download_default_directory = "/Users/luciendavid/Downloads"
+download_default_directory = "/home/ec2-user/Downloads"
 profile = {"download.default_directory": download_default_directory,
            "download.prompt_for_download": False,
            "download.directory_upgrade": True,
@@ -53,8 +55,9 @@ chrome_options.add_argument("--disable-extensions")
 driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', options=chrome_options)
 print("Chrome status : "+get_status(driver))
 
-# The url
+# The url & timeout
 url = 'https://media.interieur.gouv.fr/deplacement-covid-19/'
+download_timeout = 10
 
 # Get current time
 now = datetime.now()
@@ -104,4 +107,5 @@ print("reason ->", reason)
 print("Submitting the form ...")
 # Submit
 response = WebDriverWait(driver, 20).until(element_to_be_clickable((By.ID, "generate-btn"))).click()
+sleep(download_timeout)
 print("The output file should be accessible in ~/Downloads now !")
