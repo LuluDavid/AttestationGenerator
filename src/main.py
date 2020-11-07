@@ -41,11 +41,12 @@ def get_status(d):
 # Instantiate driver
 print("Opening chrome ...")
 chrome_options = ChromeOptions()
-chrome_options.binary_location = '/usr/local/bin/google-chrome'
+chrome_options.binary_location = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+# '/usr/local/bin/google-chrome'
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-dev-shm-usage')
-download_default_directory = "/home/ec2-user/Downloads"
+download_default_directory = "/Users/luciendavid/PycharmProjects/Downloads"
 profile = {"download.default_directory": download_default_directory,
            "download.prompt_for_download": False,
            "download.directory_upgrade": True,
@@ -71,6 +72,7 @@ driver.get(url)
 # Reload if necessary
 reload = driver.find_element_by_id("reload-btn")
 if reload.size != 0:
+    driver.execute_script("arguments[0].scrollIntoView();", reload)
     WebDriverWait(driver, 3).until(element_to_be_clickable((By.ID, "reload-btn"))).click()
 
 print("Accessing the fields ...")
@@ -84,6 +86,7 @@ city = driver.find_element_by_id("field-city")
 zipcode = driver.find_element_by_id("field-zipcode")
 date_sortie = driver.find_element_by_id("field-datesortie")
 heure_sortie = driver.find_element_by_id("field-heuresortie")
+checkbox = driver.find_element_by_id(checkbox_id)
 
 print("Filling the fields ...")
 # Fill fields
@@ -105,12 +108,14 @@ date_sortie.send_keys(date)
 print("date ->", date)
 heure_sortie.send_keys(time)
 print("time ->", time)
+driver.execute_script("arguments[0].scrollIntoView();", checkbox)
 WebDriverWait(driver, 3).until(element_to_be_clickable((By.ID, checkbox_id))).click()
 print("reason ->", reason)
 
 print("Submitting the form ...")
 # Submit
 submit = driver.find_element_by_id("generate-btn")
+driver.execute_script("arguments[0].scrollIntoView();", submit)
 response = WebDriverWait(driver, 3).until(element_to_be_clickable((By.ID, "generate-btn"))).click()
 sleep(download_timeout)
 print("The output file should be accessible in ~/Downloads now !")
